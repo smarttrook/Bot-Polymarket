@@ -92,7 +92,11 @@ export class CopyTrader {
     notional: number,
     price: number
   ): { size: number; notional: number } | null {
-    if (notional < this.config.minTradeUsd) return null;
+    // التحقق من الحد الأدنى بناءً على الإعدادات التي عدلناها في config.ts
+    if (notional < this.config.minTradeUsd) {
+        this.logger.debug("Trade skipped: below minTradeUsd", { notional, min: this.config.minTradeUsd });
+        return null;
+    }
 
     if (notional > this.config.maxTradeUsd) {
       notional = this.config.maxTradeUsd;
