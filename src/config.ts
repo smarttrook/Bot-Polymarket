@@ -177,11 +177,15 @@ export const loadConfig = (): Config => {
 
   const copyStrategy = normalizeStrategy(getEnv("COPY_STRATEGY"));
   const copyRatio = parseNumber("COPY_RATIO", 1);
-  const fixedUsd = parseNumber("FIXED_TRADE_USD", 10);
+  
+  // --- MODIFIED HERE: Changed default from 10 to 1 ---
+  const fixedUsd = parseNumber("FIXED_TRADE_USD", 1); 
   const fixedShares = parseNumber("FIXED_TRADE_SHARES", 1);
 
+  // --- MODIFIED HERE: Ensured minimum is 1 ---
   const minTradeUsd = parseNumber("MIN_TRADE_USD", 1);
   const maxTradeUsd = parseNumber("MAX_TRADE_USD", 1000);
+  
   const maxDailyVolumeUsd = parseNumber("MAX_DAILY_VOLUME_USD");
   const maxPositionSizeUsd = parseNumber("MAX_POSITION_SIZE_USD");
 
